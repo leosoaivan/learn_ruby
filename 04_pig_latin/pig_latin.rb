@@ -2,16 +2,16 @@ require 'pry'
 
 def translate(str)
   ary = str.split
+  ary_b = []
 
   ary.collect do |elem|
     if /^[aeiou]+/.match(elem)
-      return elem = elem + "ay"
-    elsif /^[^aeiou]+/.match(elem)
-      binding.pry
-      a = /^[^aeiou]+/.match(elem).to_s
-      return elem = elem[a.length..-1] + a + "ay"
+      ary_b << elem = elem + "ay"
+    else
+      a = /^[^aeiou]+[q]?[u]?/.match(elem).to_s
+      ary_b << elem = elem[a.length..-1] + a + "ay"
     end
   end
 
-  ary.join(" ")
+  ary_b.join(" ")
 end
